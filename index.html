@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>QR Code</title>
+</head>
+<body>
+  <input id="url" type="text" placeholder="input url..." />
+  <div>
+    <h2>QRCode.js</h2>
+    <div id="qrcode"></div>
+    <h2>QRious</h2>
+    <canvas id="qrious"></canvas>
+  </div>
+  <script src="./qrcode.min.js"></script>
+  <script src="./qrious.min.js"></script>
+  <script>
+    url.addEventListener('input', function(e) {
+      while(qrcode.firstChild) {
+        qrcode.removeChild(qrcode.firstChild)
+      }
+      new QRCode(qrcode, {
+        text: e.target.value,
+        width: 128,
+        height: 128,
+        colorDark : '#000000',
+        colorLight : '#ffffff',
+        correctLevel : QRCode.CorrectLevel.H
+      });
+
+      new QRious({
+        element: qrious,
+        value: e.target.value,
+        size: 128,
+        foreground: '#000000',
+        background: '#ffffff',
+        level: 'H',
+      })
+    });
+  </script>
+</body>
+</html>
